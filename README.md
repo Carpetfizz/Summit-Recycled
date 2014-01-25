@@ -12,3 +12,5 @@ Summit Recycled website: http://www.recycled-app.appspot.com
 For Summit coders:
 
 Refer to readme on the actual project page for build instructions. Fork and pull if you've done something cool or new! 
+
+Same license and rules from main project apply here.
