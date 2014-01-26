@@ -72,8 +72,6 @@ class AddPoint(webapp2.RequestHandler):
 			self.redirect('/')
 
 
-
-
 class UserProfile(webapp2.RequestHandler):
 
 	def get(self):
