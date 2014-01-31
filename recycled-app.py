@@ -8,8 +8,8 @@ loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
-ADD_POINT = 1;
-SPECIAL_KEY = '71417320de826ebc9688de68c8232383'
+ADD_POINT = 1; #Point increment
+SPECIAL_KEY = '71417320de826ebc9688de68c8232383' #URL variable
 
 class Player(db.Model):
 	name = db.StringProperty()
