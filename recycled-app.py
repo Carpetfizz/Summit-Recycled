@@ -1,4 +1,4 @@
-from google.appengine.api import users
+from google.appengine.api import users, mail
 from google.appengine.ext import db
 from datetime import timedelta, datetime
 import webapp2,cgi,jinja2,os,random
@@ -98,9 +98,34 @@ class UserProfile(webapp2.RequestHandler):
 class PurgeMain(webapp2.RequestHandler):
 
 	def get(self):
-		playerKeys = Player.all(keys_only=True);
+		emailWinner()
+		playerKeys = Player.all(keys_only=True)
 		for key in playerKeys:
 			db.delete(key)
+
+def emailWinner():
+	
+	maxPoints = None
+	try: 
+		maxPoints = Player.all().order('-points').get().points
+	except AttributeError:
+		print "[D]-No Users..."
+	if maxPoints is not None:
+		winners = db.GqlQuery("SELECT * FROM Player WHERE points=:1",maxPoints)
+		for winner in winners:
+			winnerEmail = winner.name
+			message  = mail.EmailMessage(sender="Recycled Admin <dev.tahoma@mysummitps.org>", subject="You've won Recycled!")
+			message.to = winnerEmail
+			message.body="""
+			Congratulations %s for winning this month's Recycled! \n 
+			Please contact anguyen.sj@mysummitps.org or aramesh.sj@mysummitps.org to redeem your prize. 
+
+			---- 
+			This was an automated message sent by Lamar the bot. Do not reply to this email.
+			(Service still in beta)
+			""" % winnerEmail
+			message.send()
+				
 
 
 def getLevel(points):
@@ -124,6 +149,11 @@ def getLevel(points):
 
 def matchingUsersFor(user):
 	return db.GqlQuery("SELECT * FROM Player WHERE name=:1",user.email()).fetch(1)
+
+
+def emailUser(user,message):
+	print("User: "+user)
+	print("Message: "+message)
 
 
 
