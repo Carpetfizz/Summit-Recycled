@@ -8,8 +8,10 @@ loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
-ADD_POINT = 1; #Point increment
-SPECIAL_KEY = '71417320de826ebc9688de68c8232383' #URL variable
+ADD_POINT_RECYCLING = 4; #Point increment recycling
+ADD_POINT_TRASH = 1; #Point increment trash
+SPECIAL_KEY_RECYCLING = '71417320de826ebc9688de68c8232383' #URL variable for recycling bin QR
+SPECIAL_KEY_TRASH =     '0d16f5ce62a2d8e62a282409abd95503' #URL variable for trash bin QR 
 
 class Player(db.Model):
 	name = db.StringProperty()
@@ -32,7 +34,11 @@ class AddPoint(webapp2.RequestHandler):
 		IS_VALID = False
 		if(self.request.get('special')):
 			special = str(self.request.get('special'))
-			if(special==SPECIAL_KEY):
+			if(special==SPECIAL_KEY_RECYCLING or special==SPECIAL_KEY_TRASH):
+				if special==SPECIAL_KEY_RECYCLING:
+					ADD_POINT = ADD_POINT_RECYCLING
+				else:
+					ADD_POINT = ADD_POINT_TRASH
 				user = users.get_current_user()
 				if user:
 					allUsers = matchingUsersFor(user)
@@ -48,7 +54,10 @@ class AddPoint(webapp2.RequestHandler):
 						if(player.updateTime):
 							oldUpdate = player.updateTime
 							timeDifference = datetime.now() - oldUpdate
-							checkTime = random.randint(1800,3600)
+							if(ADD_POINT==SPECIAL_KEY_RECYCLING):
+								checkTime = random.randint(1800,3600)
+							else:
+								checkTime = random.randint(300,600)
 							if timeDifference.seconds > checkTime:
 								IS_VALID = True
 						else:
@@ -130,19 +139,19 @@ def emailWinner():
 
 def getLevel(points):
 
-	if 0<=points<=5:
+	if 4<=points<=10:
 		return 'Novice Sanitarian'
-	elif 6<=points<=10:
-		return 'Regular Sanitarian'
 	elif 11<=points<=15:
-		return 'Master Sanitarian'
+		return 'Regular Sanitarian'
 	elif 16<=points<=20:
-		return 'Novice Trashmaster'
+		return 'Master Sanitarian'
 	elif 21<=points<=25:
-		return 'Regular Trashmaster'
+		return 'Novice Trashmaster'
 	elif 26<=points<=30:
+		return 'Regular Trashmaster'
+	elif 31<=points<=35:
 		return 'Master Trashmaster'
-	elif points>=31:
+	elif points>=36:
 		return 'Emperor Rubbish'
 
 
