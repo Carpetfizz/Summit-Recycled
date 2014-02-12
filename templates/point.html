@@ -4,14 +4,17 @@
 	<head>
 		<title>Recycled</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 		<style>
 		body{
 			background-color: #AEDD6E;
+			background: url('/images/blurred-background.jpg') no-repeat center center fixed; 
+       		background-size: cover;
 			height:100%;
 			margin:0;
 			padding:0;
 			text-align: center;
+			color:white;
 		}
 		#point {
 			font-size: 128px;
@@ -42,7 +45,7 @@
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 		    </button>
-		    <a class="navbar-brand" href="/">Summit Recycled</a>
+	    	<a class="navbar-brand" href="/">Summit Recycled<small> beta</small></a>
 		    <ul class="nav navbar-nav">
 		    </ul>
 		  </div>
@@ -55,15 +58,15 @@
 		</nav>
 		<div id="pointbox">
 			<div id="pointinfo">
-				<b><p class="text-success" id="point">+{{amount}}</p></b>
-				<p class="text-success" id="pointmessage">Thank You!</p>
+				<b><p id="point">+{{amount}}</p></b>
+				<p id="pointmessage">Thank You!</p>
 			</div>
 			</br>
 			<a href="/"><button type="button" class="btn btn-primary btn-block">Leaderboard</button></a></br>
 			<a href="/user"><button type="button" class="btn btn-info btn-block">My Stats</button></a>
 		</div>	
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	</body>
 
 </html>

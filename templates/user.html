@@ -4,13 +4,15 @@
 	<head>
 		<title>User {{username}}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link type="text/css" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 		<style>
 			body{
-				background-color: #AEDD6E;
+				background: url('/images/blurred-background.jpg') no-repeat center center fixed #AEDD6E; 
+       			background-size: cover;
 				height:100%;
 				margin:0;
 				padding:0;
+				color:white;
 			}
 			h3{
 				text-align: center;
@@ -38,7 +40,7 @@
 		      <span class="icon-bar"></span>
 		      <span class="icon-bar"></span>
 		    </button>
-		    <a class="navbar-brand" href="/">Summit Recycled</a>
+	    	<a class="navbar-brand" href="/">Summit Recycled<small> beta</small></a>
 		    <ul class="nav navbar-nav">
 		    </ul>
 		  </div>
@@ -53,17 +55,17 @@
 			<div id="userinfo">
 				<h3>My Stats</h3>
 				<hr>
-				<b>{{username}}</b></br>
+				{{username}}</br>
 				<hr>
-				<b>Level: {{level}}<b>
+				Level: {{level}}
 				<hr>
-				<b>Points: {{points}}</b>
+				Points: {{points}}
 				<hr>
 			</div>
 			<a href="{{logout_url}}"><button type="button" class="btn btn-danger btn-block">Logout</button></a></br>
 		</div>	
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	</body>
 
 </html>
