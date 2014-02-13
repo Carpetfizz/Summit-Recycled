@@ -13,10 +13,15 @@
 			height:100%;
 			margin:0;
 			padding:0;
+			color:white;
 		}
 		.lead {
 			color:white;
 		}
+		table tr td, table tr th{
+			background-color: rgba(255,255,255, 0.1) !important;
+		}
+				
 		</style>
 	</head>
 	<body>
@@ -45,19 +50,18 @@
 				<center><p class="lead">No Recyclers</p></center>
 				<hr>
 			{% else %}
-			<table class="table table-striped table-condensed table-bordered table-hover leaderboard-table">	
+			<table class="table table-condensed table-bordered">	
 			<tr>
 				<th>Recycler</th>
 				<th>Points</th>
 			</tr>
 			{% for player in topplayers %}
 			<tr>
-				<td class="success">{{player.name|replace("@mysummitps.org","")|replace("@summitsanjose.org","")|replace("@gmail.com","")}}</td>
-				<td class="success">{{player.points}}</td>
+				<td class="active">{{player.name|replace("@mysummitps.org","")|replace("@summitsanjose.org","")|replace("@gmail.com","")}}</td>
+				<td class="active">{{player.points}}</td>
 			</tr>
 			{% endfor %}
 			{% endif %}	
-
 			</table>
 		</div>
 	</div>
