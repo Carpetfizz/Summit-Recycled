@@ -1,3 +1,6 @@
+"""
+Belongs to ECCO TEAM. New single out soon.
+"""
 from google.appengine.api import users, mail
 from google.appengine.ext import db
 from datetime import timedelta, datetime
