@@ -11,8 +11,8 @@ loader = jinja2.FileSystemLoader(os.path.dirname(__file__)),
 extensions=['jinja2.ext.autoescape'],
 autoescape=True)
 
-ADD_POINT_RECYCLING = 4; #Point increment recycling
-ADD_POINT_TRASH = 1; #Point increment trash
+ADD_POINT_RECYCLING = 1; #Point increment recycling
+ADD_POINT_TRASH = 4; #Point increment trash
 SPECIAL_KEY_RECYCLING = '71417320de826ebc9688de68c8232383' #URL variable for recycling bin QR
 SPECIAL_KEY_TRASH =     '0d16f5ce62a2d8e62a282409abd95503' #URL variable for trash bin QR 
 
@@ -58,9 +58,9 @@ class AddPoint(webapp2.RequestHandler):
 							oldUpdate = player.updateTime
 							timeDifference = datetime.now() - oldUpdate
 							if(ADD_POINT==SPECIAL_KEY_RECYCLING):
-								checkTime = random.randint(1800,3600)
+								checkTime = random.randint(300,600) #recycling scan
 							else:
-								checkTime = random.randint(300,600)
+								checkTime = random.randint(60,120) #trash scan
 							if timeDifference.seconds > checkTime:
 								IS_VALID = True
 						else:
